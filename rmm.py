@@ -19,10 +19,10 @@ class RMM:
         return res
 
     @staticmethod
-    def trends_group(codes, prices, start_month=1, period=6, mean=False, cap=50):
+    def trends_group(codes, prices, start_month=1, period=6, mean=False, cap=[50, 50, 50]):
         res = []
-        for code in codes:
-            res.append(RMM.trends(code, start_month, period, mean, cap))
+        for index, code in enumerate(codes):
+            res.append(RMM.trends(code, start_month, period, mean, cap[index]))
         smallest = float('inf')
         for p in prices:
             smallest = len(p)
