@@ -23,10 +23,15 @@ class RMM:
         res = []
         for index, code in enumerate(codes):
             res.append(RMM.trends(code, start_month, period, mean, cap[index]))
-        smallest = float('inf')
-        for p in prices:
-            smallest = len(p)
-        for r in res:
-            r = r[len(r)-smallest:]
+        for i in range(len(res)):
+            res[i] = res[i][len(res[i])-len(prices[0]):]
 
         return res
+
+# from b3data.utils.stock_util import StockUtil
+# stockutil = StockUtil(['PETR3', 'ABEV3', 'VALE3'], [6,9,6])
+# prices, preds = stockutil.prices_preds(start_year=2014,
+#                                         end_year=2014,
+#                                         period=6)
+# print(len(RMM.trends_group(['PETR3', 'ABEV3', 'VALE3'], prices)[1]))
+# print(len(prices[1]))
